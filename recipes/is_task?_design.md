@@ -9,7 +9,7 @@ I want to check if a text includes the string #TODO.
 2. Design the Method Signature
 Include the name of the method, its parameters, return value, and side effects.
 
-# 'task_tracker(text)' identifies whether text includes the string #TODO
+# 'is_task?(text)' identifies whether text includes the string #TODO
 
 is_todo = is_task?(text)
 
@@ -24,37 +24,47 @@ The method returns a Boolean value (true or false)
 3. Create Examples as Tests
 Make a list of examples of what the method will take and return.
 
-#1.
-is_task?("")
+# 1.
+# is_task?("")
 # => fail 
 
 # 2. 
-is_task?("#TODO play tennis")
+# is_task?("#TODO play tennis")
 # => true
 
 # 3. 
-is_task?("play tennis")
+# is_task?("play tennis")
 # => false
 
 # 4. 
-is_task?("#todo play tennis")
+# is_task?("#todo play tennis")
 # => true
 
 # 5. 
-is_task?("#Todo play tennis")
+# is_task?("#Todo play tennis")
 # => true
 
 # 6. 
-is_task?("#TODOplay tennis")
+# is_task?("#TODOplay tennis")
 # => false
 
 # 7. 
-is_task?(2)
+# is_task?(2)
 # => fail
 
-# 6. 
-is_task?("TODO play tennis")
+# 8. 
+# is_task?("TODO play tennis")
 # => false
+
+# 9. 
+# is_task?("play tennis #TODO")
+# => false
+
+# 10. 
+# is_task?("#TODO")
+# => false
+
+
 
 3. Encode each example as a test. You can add to the above list as you go.
 
