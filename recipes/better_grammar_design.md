@@ -41,19 +41,26 @@ _Make a list of examples of what the method will take and return._
 
 ```ruby
 #1.
-better_grammar("my name is Leah")
+#better_grammar("My name is Leah.")
+# => "My name is Leah."
+
+
+#better_grammar("my name is Leah.")
+# => "My name is Leah."
+
+#better_grammar("My name is Leah")
 # => "My name is Leah."
 
 #2.
-better_grammar("")
+#better_grammar("")
 # => ""
 
 #3. 
-better_grammar("hi")
+#better_grammar("hi")
 # => "Hi."
 
 #4. 
-better_grammar(1)
+#better_grammar(1)
 # => error message
 
 #5.
@@ -64,20 +71,6 @@ better_grammar("Hello")
 
 ```
 
-
-
-
-```ruby
-# EXAMPLE
-
-extract_uppercase("hello WORLD") => ["WORLD"]
-extract_uppercase("HELLO WORLD") => ["HELLO", "WORLD"]
-extract_uppercase("hello world") => []
-extract_uppercase("hello WoRLD") => []
-extract_uppercase("hello WORLD!") => ["WORLD"]
-extract_uppercase("") => []
-extract_uppercase(nil) throws an error
-```
 
 _Encode each example as a test. You can add to the above list as you go._
 
