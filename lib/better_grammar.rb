@@ -1,5 +1,9 @@
 def better_grammar(text)
 
+    fail "Input must be a string" unless text.is_a?(String)
+
+    return "You have not written any content" if text == ""
+
     if text[-1] == "."
         new_text = text
     else 

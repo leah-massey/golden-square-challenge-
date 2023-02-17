@@ -15,9 +15,11 @@ RSpec.describe "reading_time method" do
 
     context "when input is not a string" do
         it "fails" do 
-            
             expect { reading_time(1) }.to raise_error "This is not a text"
         end
-    end
 
+        it "fails" do 
+            expect { reading_time(["hi"])}.to raise_error "This is not a text"
+        end
+    end
 end
