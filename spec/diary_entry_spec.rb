@@ -10,7 +10,7 @@ RSpec.describe DiaryEntry do
         expect(new_entry.contents). to eq "I went for a run."
     end
 
-    it "returns the number of words in teh contents as an integer" do 
+    it "returns the number of words in the contents as an integer" do 
         new_entry = DiaryEntry.new("The Park", "I went for a run. " *10 )
         expect(new_entry.count_words).to eq 50
     end
@@ -47,18 +47,44 @@ RSpec.describe DiaryEntry do
             expect(new_entry.reading_time(20)).to eq 16 
         end
 
+        it "fails when wpm is 0" do 
+            new_entry = DiaryEntry.new("The Park", "Did a run " )
+            expect { new_entry.reading_time(0) }.to raise_error "This is not a proper reading time" 
+        end
+
     end
 
-    context "when 'reading_chunk' is called" 
-        it "" do 
+    context "when 'reading_chunk' is called" do
+        it "returns the words readable in the time given" do 
             new_entry = DiaryEntry.new("The Park", "Ran " * 200 )
-            expect(new_entry.reading_chunk(10, 2)).to eq "Ran " * 19 + "Ran"
+            expect(new_entry.reading_chunk(1, 2)).to eq "Ran Ran"
         end 
 
-        it "" do 
-            new_entry = DiaryEntry.new("The Park", "I went running along the foreshore of the embankment and did a spot of mudlarking" * 200 )
-            expect(new_entry.reading_chunk(10, 1)).to eq "I went running along the foreshore of the embankment and"
+
+        it "returns only a chunk of text if text too long for reading time/pace" do 
+            new_entry = DiaryEntry.new("The Park", "I went running along the foreshore")
+            expect(new_entry.reading_chunk(1, 2)).to eq "I went"
         end 
 
+        it "returns the next chunk of text if reading_chunk is called again" do
+            new_entry = DiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
+            new_entry.reading_chunk(1, 2)
+            expect(new_entry.reading_chunk(3, 1)).to eq "running in the"    
+        end
+
+        it "returns the next chunk of text if reading_chunk is called again" do
+            new_entry = DiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
+            new_entry.reading_chunk(1, 1)
+            new_entry.reading_chunk(1, 1)  
+            expect(new_entry.reading_chunk(1, 1)).to eq "running"   
+        end
+
+        it "returns the next chunk of text if reading_chunk is called again" do
+            new_entry = DiaryEntry.new("The Park", "I went")
+            new_entry.reading_chunk(1, 1)
+            new_entry.reading_chunk(1, 1)  
+            expect(new_entry.reading_chunk(1, 1)).to eq "I"   
+        end
         
     end 
+end
