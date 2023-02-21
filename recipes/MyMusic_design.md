@@ -31,7 +31,7 @@ class MyMusic
     # returns the songs that have been added
     # throws error if list empty
     end
-
+end
 ```
 
 ## 3. Create Examples as Tests
@@ -41,65 +41,47 @@ _Make a list of examples of how the class will behave in different situations._
 ```ruby
 
 # 1
-new_music_list = MyMusic.new
-new_music_list.add("Toxic")
-# => "Toxic"
+# new_music_list = MyMusic.new
+# new_music_list.add("Toxic")
+# new_music_list.view_songlist
+# => ["Toxic"]
 
 # 2
-new_music_list = MyMusic.new
-new_music_list.add("Toxic")
-new_music_list.add("Life's A Beach")
-# => "Toxic", "Life's A Beach"
+# new_music_list = MyMusic.new
+# new_music_list.add("Toxic")
+# new_music_list.add("Life's A Beach")
+# new_music_list.view_songlist
+# => ["Toxic", "Life's A Beach"]
 
 # 3
-new_music_list = MyMusic.new
-new_music_list.add("Toxic")
-new_music_list.add("life's A Beach") # all inputs are updated using .capitalize
-# => "Toxic", "Life's A Beach"
+# new_music_list = MyMusic.new
+# new_music_list.add("Toxic")
+# new_music_list.add("life's A Beach") # all inputs are updated using .capitalize
+# new_music_list.view_songlist
+# => ["Toxic", "Life's A Beach"]
 
 # 4
-new_music_list = MyMusic.new
-new_music_list.add("")
+# new_music_list = MyMusic.new
+# new_music_list.add("")
 # => fail "This is not song"
 
 # 5
-new_music_list = MyMusic.new
-new_music_list.view_songlist
+# new_music_list = MyMusic.new
+# new_music_list.view_songlist
 # => fail "Your list is empty"
 
 # 6
-new_music_list = MyMusic.new
-new_music_list.add("Toxic")
-new_music_list.add("toxic") # when the same song is added twice
-new_music_list.view_songlist
-# => "Toxic"
+# new_music_list = MyMusic.new
+# new_music_list.add("Toxic")
+# new_music_list.add("toxic") # when the same song is added twice
+# new_music_list.view_songlist
+# => ["Toxic"]
 
 # 7
-new_music_list = MyMusic.new
-new_music_list.add(7) #when argument is not a string
+# new_music_list = MyMusic.new
+# new_music_list.add(7) #when argument is not a string
 # => fail "Song needs to be a string"
 
-
-
-```
-
-
-```ruby
-# EXAMPLE
-
-# 1
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
-
-# 2
-reminder = Reminder("Kay")
-reminder.remind() # fails with "No task set."
-
-# 3
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
