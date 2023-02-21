@@ -1,15 +1,33 @@
 class GrammarStats
     def initialize
-      # ...
+        @total_number_of_texts = 0
+        @number_of_texts_true = 0
     end
   
-    def check(text) # text is a string
-      # Returns true or false depending on whether the text begins with a capital
-      # letter and ends with a sentence-ending punctuation mark.
+    def check(text)
+       fail "You must enter a text" if text == ("")
+       fail "You must enter strings only" unless text.is_a?(String)
+        
+       words = text.split(" ")
+       @total_number_of_texts += 1
+       
+       if (words[0] == words[0].capitalize) && (words[-1][-1] == ".")
+            @number_of_texts_true += 1        
+            return true
+       else
+            return false
+       end
     end
   
     def percentage_good
-      # Returns as an integer the percentage of texts checked so far that passed
-      # the check defined in the `check` method. The number 55 represents 55%.
+
+        total_texts = @total_number_of_texts 
+        texts_true = @number_of_texts_true
+        percentage = ((texts_true / total_texts.to_f) * 100).ceil
+
+        return percentage
+
     end
   end
+
+  
