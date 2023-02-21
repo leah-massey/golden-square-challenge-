@@ -18,3 +18,5 @@
 # new_entry.reading_time(20)
 # => 15.15 round up to 16 
 
+only a few letters 
+
