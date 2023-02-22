@@ -1,54 +1,54 @@
-require 'diary_entry'
+require 'my_diary_entry.rb'
 
-RSpec.describe DiaryEntry do 
+RSpec.describe MyDiaryEntry do 
     it "returns the title of the entry as a string" do 
-        new_entry = DiaryEntry.new("The Park", "I went for a run.")
+        new_entry = MyDiaryEntry.new("The Park", "I went for a run.")
         expect(new_entry.title).to eq "The Park" 
     end 
     it "returns the content of the entry as a string" do 
-        new_entry = DiaryEntry.new("The Park", "I went for a run.")
+        new_entry = MyDiaryEntry.new("The Park", "I went for a run.")
         expect(new_entry.contents). to eq "I went for a run."
     end
 
     it "returns the number of words in the contents as an integer" do 
-        new_entry = DiaryEntry.new("The Park", "I went for a run. " *10 )
+        new_entry = MyDiaryEntry.new("The Park", "I went for a run. " *10 )
         expect(new_entry.count_words).to eq 50
     end
 
     context "while running the 'reading_time' function" do 
 
         it "returns the estimated reading time needed for reading the contents of the entry as an integer" do 
-            new_entry = DiaryEntry.new("The Park", "I went for a run. " * 2000)
+            new_entry = MyDiaryEntry.new("The Park", "I went for a run. " * 2000)
             expect(new_entry.reading_time(20)).to eq 500
         end
 
         it "returns 0 if the string is empty" do
-            new_entry = DiaryEntry.new("The Park", "" )
+            new_entry = MyDiaryEntry.new("The Park", "" )
             expect(new_entry.reading_time(20)).to eq 0 
         end
 
         it "returns 1 if the string is empty" do
-            new_entry = DiaryEntry.new("The Park", "hello" )
+            new_entry = MyDiaryEntry.new("The Park", "hello" )
             expect(new_entry.reading_time(20)).to eq 1 
         end
 
         it "returns 0 if the string is empty" do
-            new_entry = DiaryEntry.new("The Park", "hello" )
+            new_entry = MyDiaryEntry.new("The Park", "hello" )
             expect(new_entry.reading_time(20)).to eq 1 
         end
 
         it "rounds up to the nearest whole minute" do
-            new_entry = DiaryEntry.new("The Park", "Did a run " * 101 )
+            new_entry = MyDiaryEntry.new("The Park", "Did a run " * 101 )
             expect(new_entry.reading_time(20)).to eq 16 
         end
 
         it "returns 1 if the string is less than wpm value" do
-            new_entry = DiaryEntry.new("The Park", "Did a run " * 101 )
+            new_entry = MyDiaryEntry.new("The Park", "Did a run " * 101 )
             expect(new_entry.reading_time(20)).to eq 16 
         end
 
         it "fails when wpm is 0" do 
-            new_entry = DiaryEntry.new("The Park", "Did a run " )
+            new_entry = MyDiaryEntry.new("The Park", "Did a run " )
             expect { new_entry.reading_time(0) }.to raise_error "This is not a proper reading time" 
         end
 
@@ -56,31 +56,31 @@ RSpec.describe DiaryEntry do
 
     context "when 'reading_chunk' is called" do
         it "returns the words readable in the time given" do 
-            new_entry = DiaryEntry.new("The Park", "Ran " * 200 )
+            new_entry = MyDiaryEntry.new("The Park", "Ran " * 200 )
             expect(new_entry.reading_chunk(1, 2)).to eq "Ran Ran"
         end 
 
 
         it "returns only a chunk of text if text too long for reading time/pace" do 
-            new_entry = DiaryEntry.new("The Park", "I went running along the foreshore")
+            new_entry = MyDiaryEntry.new("The Park", "I went running along the foreshore")
             expect(new_entry.reading_chunk(1, 2)).to eq "I went"
         end 
 
         it "returns the next chunk of text if reading_chunk is called again" do
-            new_entry = DiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
+            new_entry = MyDiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
             new_entry.reading_chunk(1, 2)
             expect(new_entry.reading_chunk(3, 1)).to eq "running in the"    
         end
 
         it "returns the next chunk of text if reading_chunk is called again" do
-            new_entry = DiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
+            new_entry = MyDiaryEntry.new("The Park", "I went running in the park with a friend then we had coffee.")
             new_entry.reading_chunk(1, 1)
             new_entry.reading_chunk(1, 1)  
             expect(new_entry.reading_chunk(1, 1)).to eq "running"   
         end
 
         it "returns the next chunk of text if reading_chunk is called again" do
-            new_entry = DiaryEntry.new("The Park", "I went")
+            new_entry = MyDiaryEntry.new("The Park", "I went")
             new_entry.reading_chunk(1, 1)
             new_entry.reading_chunk(1, 1)  
             expect(new_entry.reading_chunk(1, 1)).to eq "I"   
