@@ -20,4 +20,5 @@ class TodoList
         fail "This task is not listed" unless @tasks_listed.include?(task)
         @tasks_listed.delete(task.downcase)
     end 
+
 end
