@@ -1,39 +1,41 @@
-require 'TodoList.rb'
+require 'TodoList'
 
 RSpec.describe TodoList do 
 
-    describe "#viewtasks" do 
+  #describe "#viewtasks" do 
 
-        it "returns 'You have no tasks' if no tasks have been added" do 
-            new_list = TodoList.new
-            expect(new_list.view_tasks).to eq "You have no tasks"
-        end
+    it "returns 'You have no tasks' if no tasks have been added" do 
+      new_list = TodoList.new
+      expect(new_list.view_tasks).to eq "You have no tasks"
+    end
 
-        it "if one task added, it returns that task" do 
-            new_list = TodoList.new
-            new_list.todo("water plants")
-            expect(new_list.view_tasks).to eq ["water plants"]
-        end
+    it "if one task added, it returns that task" do 
+      new_list = TodoList.new
+      new_list.todo("water plants")
+      expect(new_list.view_tasks).to eq ["water plants"]
+    end
 
-        it "returns all tasks if multiple tasks have been added" do 
-            new_list = TodoList.new
-            new_list.todo("water plants")
-            new_list.todo("buy milk")
-            expect(new_list.view_tasks).to eq ["water plants", "buy milk"]
-        end
-    end 
+    it "returns all tasks if multiple tasks have been added" do 
+      new_list = TodoList.new
+      new_list.todo("water plants")
+      new_list.todo("buy milk")
+      expect(new_list.view_tasks).to eq ["water plants", "buy milk"]
+    end
+  
 
-    it "removes tasks if requested and returns an updated list when called" do 
+    it "removes tasks from the list" do 
         new_list = TodoList.new
         new_list.todo("water plants")
         new_list.todo("buy milk")
         new_list.completed_task("water plants") 
-        expect(new_list.view_tasks).to eq ["buy milk"]
-    end 
+        remaining_tasks = new_list.view_tasks
+  
+        expect(remaining_tasks).to eq ["buy milk"]
+    end
 
     it "retuns 'You have no tasks' if all todos have been completed" do 
         new_list = TodoList.new
-        new_list.todo("water plants")
+        new_list.todo("water plants")     
         new_list.todo("buy milk")
         new_list.completed_task("water plants") 
         new_list.completed_task("buy milk") 
@@ -66,4 +68,4 @@ RSpec.describe TodoList do
         new_list.todo("Buy milk")
         expect(new_list.view_tasks).to eq ["water plants", "buy milk"]
     end
-end
+  end

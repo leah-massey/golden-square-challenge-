@@ -1,12 +1,14 @@
 class TodoList
-    def initialize
+  def initialize 
     @tasks_listed = []
-    end 
+  end 
 
-    def todo(task)
-        fail "Task cannot be an empty string" if task == ("")
-        @tasks_listed << task.downcase unless @tasks_listed.include?(task.downcase)
+  def todo(task)
+    fail "Task cannot be an empty string" if task == ""
+    unless @tasks_listed.include?(task.downcase)
+      @tasks_listed << task.downcase
     end
+  end
 
     def view_tasks
         if @tasks_listed == []
@@ -17,8 +19,11 @@ class TodoList
     end
 
     def completed_task(task)
-        fail "This task is not listed" unless @tasks_listed.include?(task)
-        @tasks_listed.delete(task.downcase)
+      if @tasks_listed.include?(task.downcase)
+        return @tasks_listed.delete(task.downcase)
+      else  
+        fail "This task is not listed" 
+      end
     end 
 
 end
